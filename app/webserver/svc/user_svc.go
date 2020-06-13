@@ -31,7 +31,7 @@ func SignUp(param *params.SignupReq) errcode.APIError {
 	user.Username = param.Username
 	user.Password = param.Password
 	user.State = model.UserStateNormal
-	user.Avatar = "http://img4.imgtn.bdimg.com/it/u=1050973335,3741690257&fm=15&gp=0.jpg"
+	user.Avatar = "https://lh3.googleusercontent.com/proxy/8n9pUPUbZj_h7VUYTJWNrKkiWAmcjTGPPgXxQBBqUdNsWcvLmwTwKihB5yEl7BYbj7NgJlIlfxxa09oOxCbjsd4ZWoV9-GIv"
 	err = db.GetDB().Create(&user).Error
 	if err != nil {
 		logs.Sugar().Error("保存用户信息出错", "error", err.Error())

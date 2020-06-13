@@ -18,7 +18,7 @@ import (
 func Init() error {
 	r := gin.Default()
 
-	// 配置了路径，才启用webserver
+	// 配置了路径，才启用文件服务，部署时可以选择将前端的代码一起部署
 	webPath := cfg.GetString("common.webpath")
 	if len(webPath) > 0 {
 		r.Static("/web", webPath)
