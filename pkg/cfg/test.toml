@@ -1,0 +1,9 @@
+global_String = "global_String"
+global_Int = 3
+global_Bool = true
+
+[server]
+server_String = "server_String"
+server_Int = 7
+server_Bool = false
+

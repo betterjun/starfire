@@ -1,0 +1,143 @@
+basePath: /
+definitions:
+  params.SigninReq:
+    properties:
+      password:
+        description: 用户密码
+        type: string
+      username:
+        description: 用户名称
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  params.SigninRsp:
+    properties:
+      token:
+        description: 用户令牌，后续请求都需要在header X-Token带上此token
+        type: string
+      uid:
+        description: 用户id
+        type: integer
+    required:
+    - token
+    - uid
+    type: object
+  params.SignupReq:
+    properties:
+      password:
+        description: 用户密码
+        type: string
+      username:
+        description: 用户名称
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  params.UserInfoRsp:
+    properties:
+      avatar:
+        description: 用户头像
+        type: string
+      name:
+        description: 用户名
+        type: string
+    type: object
+host: localhost:16888
+info:
+  contact:
+    email: starfire@starfire.io
+    name: StarFire API Support
+    url: http://www.starfire.io/support
+  description: pub开头的api不需要登录就可访问，pri开头的需要登录才能访问，访问pri开头的路由时，需要把登录返回的token放到header
+    X-Token中，服务器要做鉴权。
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: starfire量化系统 API
+  version: "1.0"
+paths:
+  /v1/pri/signout:
+    post:
+      consumes:
+      - application/json
+      description: 用户登出
+      operationId: SignOut
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":"ok"}'
+          schema:
+            type: string
+      summary: 用户登出
+      tags:
+      - 用户
+  /v1/pri/userinfo:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户信息
+      operationId: UserInfo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.UserInfoRsp'
+      summary: 获取用户信息
+      tags:
+      - 用户
+  /v1/pub/signin:
+    post:
+      consumes:
+      - application/json
+      description: 用户登录
+      operationId: SignIn
+      parameters:
+      - description: 登录参数
+        in: body
+        name: signInParam
+        required: true
+        schema:
+          $ref: '#/definitions/params.SigninReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/params.SigninRsp'
+      summary: 用户登录
+      tags:
+      - 用户
+  /v1/pub/signup:
+    post:
+      consumes:
+      - application/json
+      description: 用户注册
+      operationId: SignUp
+      parameters:
+      - description: 注册参数
+        in: body
+        name: signUpParam
+        required: true
+        schema:
+          $ref: '#/definitions/params.SignupReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":"ok"}'
+          schema:
+            type: string
+      summary: 用户注册
+      tags:
+      - 用户
+swagger: "2.0"

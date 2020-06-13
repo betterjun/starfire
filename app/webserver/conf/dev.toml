@@ -1,0 +1,75 @@
+############################################################################
+# 通用配置段
+[common]
+# web服务器监听端口
+port = 16888
+# 是否启用性能分析，默认不启用
+pprof = false
+
+
+############################################################################
+# 日志文件配置段
+[log]
+# 指定日志文件名，不指定或为空则用程序名做日志
+file = "log"
+# 指定日志级别
+level = "debug"
+# 单个文件最大大小，单位MB
+maxSize = 100
+# 单个文件的最大存活时间，天数
+maxAge = 7
+# 最多保留多少个文件
+maxBackup = 7
+
+
+############################################################################
+# database配置段
+[database]
+# gorm支持的数据库类型，sqlite3,mysql,postgres
+db_type = "sqlite3"
+#db_type = "mysql"
+
+# sqlite3数据库文件
+sqlite3_file = "./starfire.db"
+
+# 下面是mysql配置
+# 数据库地址
+mysql_host = "47.108.94.209:33006"
+# 数据库用户名
+mysql_username = "kaifa"
+# 数据库用户密码
+mysql_password = "a14VrCzdkRm39vEO"
+# 数据库名
+mysql_dbname = "rrquant"
+# 最大连接数
+mysql_max_open = 100
+# 最大空闲数
+mysql_max_idle = 10
+
+
+############################################################################
+# nosql配置段
+[nosql]
+# 支持的数据库类型，redis或bolt
+#db_type = "redis"
+db_type = "bolt"
+
+# bolt数据库文件
+bolt_file = "./starfire.kvdb"
+
+# 下面是mysql配置
+# 数据库地址
+redis_host = "47.108.94.209:6379"
+# 数据库用户密码
+redis_auth = "Sdjx2020"
+# 数据库
+redis_db=2
+# 最大连接数
+redis_max_active=30
+# 最大空闲数
+redis_max_idle=30
+# 空闲超时重连，单位秒
+redis_idle_timeout=200
+
+
+
